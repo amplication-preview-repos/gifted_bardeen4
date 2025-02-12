@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Contact {
+  createdAt DateTime @default(now())
+  email     String?
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  phone     String?
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  createdAt DateTime         @default(now())
+  id        String           @id @default(cuid())
+  name      EnumAccountName?
+  updatedAt DateTime         @updatedAt
+}
+
+enum EnumAccountName {
+  Boutique
+  Department
+}
